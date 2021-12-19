@@ -21,6 +21,7 @@ module appGateway 'applicationgateway.bicep' = {
     applicationGatewayName: 'MyApplicationGateway'
     sku: 'Standard_v2'
     tier: 'Standard_v2'
+    zoneRedundant: true
     publicIpAddressName: 'MyPublicIpAddress'
     vNetResourceGroup: 'MyVnetResourceGroup'
     vNetName: 'MyVnetName'
@@ -90,6 +91,7 @@ module appGateway 'applicationgateway.bicep' = {
     applicationGatewayName: 'MyApplicationGateway'
     sku: 'WAF_v2'
     tier: 'WAF_v2'
+    zoneRedundant: true
     enableWebApplicationFirewall: true
     firewallPolicyName: 'MyFirewallPolicyName'
     publicIpAddressName: 'MyPublicIpAddress'

@@ -38,6 +38,9 @@ param capacity int = 2
 @maxValue(32)
 param autoScaleMaxCapacity int = 10
 
+@description('Enable Azure availabilty zone redundancy')
+param zoneRedundant bool = false
+
 @description('Public ip address name')
 param publicIpAddressName string
 
@@ -278,6 +281,11 @@ resource publicIpAddressLock 'Microsoft.Authorization/locks@2017-04-01' = if (en
 resource applicationGateway 'Microsoft.Network/applicationGateways@2021-03-01' = {
   name: applicationGatewayName
   location: location
+  zones: zoneRedundant ? [
+    '1'
+    '2'
+    '3'
+  ] : []
   identity: !empty(managedIdentityResourceId) ? {
     type: 'UserAssigned'
     userAssignedIdentities: {
